@@ -103,6 +103,7 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
           | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS;
 
   private static final String KEYBOARD_TYPE_EMAIL_ADDRESS = "email-address";
+  private static final String KEYBOARD_TYPE_URI = "url";
   private static final String KEYBOARD_TYPE_NUMERIC = "numeric";
   private static final String KEYBOARD_TYPE_DECIMAL_PAD = "decimal-pad";
   private static final String KEYBOARD_TYPE_NUMBER_PAD = "number-pad";
@@ -774,6 +775,8 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
       // This will supercede secureTextEntry={false}. If it doesn't, due to the way
       //  the flags work out, the underlying field will end up a URI-type field.
       flagsToSet = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
+    } else if (KEYBOARD_TYPE_URI.equalsIgnoreCase(keyboardType)) {
+      flagsToSet = InputType.TYPE_TEXT_VARIATION_URI;
     }
 
     updateStagedInputTypeFlag(view, InputType.TYPE_MASK_CLASS, flagsToSet);
